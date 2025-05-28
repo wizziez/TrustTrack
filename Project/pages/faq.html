@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - TrustTrack</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html"><h2><i class="fas fa-bus"></i> TrustTrack</h2></a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="team.html">Team</a>
+                <a href="faq.html" class="active">FAQ</a>
+                <a href="admin.html">Admin</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <div class="auth-buttons">
+                    <button class="login-btn" id="loginBtn">Login</button>
+                    <button class="signup-btn" id="signupBtn">Join TrustTrack</button>
+                </div>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    <section class="faq-hero">
+        <div class="container">
+            <h1 class="faq-main-title"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h1>
+            <p class="faq-subtitle">Find answers to common questions about TrustTrack, reviews, safety, and more.</p>
+        </div>
+    </section>
+    <section class="faq-list-section">
+        <div class="container">
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">How do I submit a review?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">Go to the Reviews page and fill out the review form. No login is required to share your experience.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is my feedback anonymous?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">Yes, you can submit reviews and feedback without creating an account. Your privacy is always respected.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How are ratings calculated?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">Ratings are based on user reviews and averaged across safety, hygiene, punctuality, and overcrowding.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What should I do in an emergency?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">Visit the Emergency page for quick access to police, hospitals, and urgent resources.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Who is behind TrustTrack?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">TrustTrack is built by a passionate team dedicated to safer, more reliable public transport in Bangladesh. Meet us on the Team page!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bus"></i> TrustTrack</h3>
+                    <p>Making public transport safer and more reliable for Bangladesh</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="reviews.html">Submit Review</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                        <li><a href="team.html">About Team</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> info@trusttrack.bd</p>
+                    <p><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TrustTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const item = this.parentElement;
+            const open = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!open) item.classList.add('open');
+        });
+    });
+    </script>
+</body>
+</html> 
