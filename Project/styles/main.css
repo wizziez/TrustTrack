@@ -441,7 +441,7 @@ body {
 
 /* Modal Styles */
 .auth-modal {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -456,6 +456,8 @@ body {
     height: 100vh;
     opacity: 0;
     transition: opacity 0.3s ease;
+    overflow-y: auto;
+    padding: 20px;
 }
 
 .auth-modal.active {
@@ -468,13 +470,13 @@ body {
     box-shadow: 0 8px 32px rgba(44, 90, 160, 0.15),
                 0 1.5px 8px rgba(44, 90, 160, 0.1);
     max-width: 420px;
-    width: 95vw;
-    padding: 0;
+    width: 95%;
+    margin: auto;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    margin: 0 auto;
     transform: translateY(-20px) scale(0.95);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -898,16 +900,58 @@ body {
     color: #f59e0b;
 }
 
-/* Mobile Responsiveness for Enhanced Hero */
+/* Enhanced Responsive Design */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    .hero .container {
+        gap: 3rem;
+    }
+    .hero-card {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 1366px) {
+    .container {
+        max-width: 1140px;
+        padding: 0 1.5rem;
+    }
+    .hero-content h1 {
+        font-size: 3.2rem;
+    }
+    .hero-card {
+        max-width: 360px;
+    }
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
 @media (max-width: 1100px) {
+    .container {
+        max-width: 960px;
+    }
     .hero .container {
         gap: 2rem;
     }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
     .hero-card {
-        max-width: 320px;
+        max-width: 340px;
+    }
+    .carousel-review {
+        min-width: 320px;
+        max-width: 340px;
     }
 }
+
 @media (max-width: 900px) {
+    .container {
+        max-width: 720px;
+    }
     .hero .container {
         grid-template-columns: 1fr;
         gap: 2.5rem;
@@ -915,26 +959,214 @@ body {
         padding-top: 2vh;
         padding-bottom: 2vh;
     }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
     .hero-card {
         margin: 0 auto;
         max-width: 98vw;
+        transform: rotate(0deg);
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .hero-stats {
+        justify-content: center;
+    }
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .carousel-track {
+        max-width: 98vw;
+    }
+    .carousel-review {
+        min-width: 92vw;
+        max-width: 97vw;
+        margin: 0 -6px;
+        padding: 1.2rem 0.5rem;
+    }
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+    .nav-links.open {
+        display: flex;
+    }
+    .nav-toggle {
+        display: flex;
     }
 }
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+        padding: 0 1rem;
+    }
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .hero-badge {
+        font-size: 0.9rem;
+    }
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    .features-header h2 {
+        font-size: 2rem;
+    }
+    .features-header p {
+        font-size: 1.1rem;
+    }
+    .feature-card {
+        padding: 1.5rem;
+    }
+    .carousel-nav {
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .carousel-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
 @media (max-width: 600px) {
+    .container {
+        padding: 0 0.8rem;
+    }
     .hero .container {
         padding: 0 4px;
         gap: 1.2rem;
     }
     .hero-content h1 {
-        font-size: 2.1rem;
+        font-size: 2rem;
     }
     .hero-card {
         max-width: 99vw;
         padding: 1.2rem 0.5rem;
     }
     .hero-badge {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         padding: 0.4rem 0.8rem;
+    }
+    .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+    .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .carousel-review {
+        min-width: 98vw;
+        max-width: 99vw;
+        padding: 1rem 0.2rem;
+    }
+    .carousel-track {
+        padding: 0;
+    }
+    .carousel-review .review-item-header h3 {
+        font-size: 1.1rem;
+    }
+    .carousel-review .transport-service {
+        font-size: 0.95rem;
+    }
+    .carousel-review .review-feedback {
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+    }
+    .carousel-review .review-meta {
+        font-size: 0.85rem;
+    }
+    .auth-modal .modal-container {
+        max-width: 95vw;
+        margin: 0 10px;
+    }
+    .auth-modal .modal-header {
+        padding: 1.2rem 1rem;
+    }
+    .auth-modal .modal-content {
+        padding: 1.2rem 1rem;
+    }
+    .auth-form input {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+    .auth-submit {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .hero-badge {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+    .carousel-review {
+        min-width: 99vw;
+        max-width: 100vw;
+        padding: 0.8rem 0.1rem;
+    }
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .auth-modal .modal-container {
+        max-width: 98vw;
+        margin: 0 5px;
+    }
+}
+
+/* Fix for 15-inch laptop displays */
+@media (min-width: 1366px) and (max-width: 1440px) {
+    .container {
+        max-width: 1200px;
+    }
+    .hero .container {
+        gap: 2.5rem;
+    }
+    .hero-card {
+        max-width: 380px;
+    }
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+    .carousel-review {
+        min-width: 360px;
+        max-width: 380px;
     }
 }
 
@@ -1330,6 +1562,28 @@ body {
     background: #334155;
 }
 
+/* Responsive Auth Modal Improvements */
+@media (min-width: 1024px) {
+    .auth-modal .modal-container {
+        max-width: 480px;
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .auth-modal .modal-container {
+        max-width: 520px;
+        padding: 2.5rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .auth-modal .modal-container {
+        max-width: 560px;
+        padding: 3rem;
+    }
+}
+
 /* Modern Glassy Carousel Redesign */
 .reviews-carousel {
     background: linear-gradient(135deg, #f8fafc 60%, #e2e8f0 100%);
@@ -1376,7 +1630,8 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 0 10px;
+    padding: 0 20px;
+    overflow: hidden;
 }
 
 .carousel-track {
@@ -1387,6 +1642,8 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 1100px;
+    position: relative;
+    padding: 20px 0;
 }
 
 .carousel-review {
@@ -1406,17 +1663,90 @@ body {
     backdrop-filter: blur(6px);
     opacity: 0.93;
     transform: scale(0.99) translateY(10px);
-    transition: box-shadow 0.3s, transform 0.4s, opacity 0.5s, filter 0.3s;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
     z-index: 1;
     pointer-events: none;
     filter: blur(0.2px);
-    /* Animation for entry */
-    animation: carouselFadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
 }
 
-@keyframes carouselFadeIn {
-    from { opacity: 0; transform: scale(0.95) translateY(30px); }
-    to { opacity: 0.93; transform: scale(0.99) translateY(10px); }
+/* Laptop-specific carousel adjustments */
+@media (min-width: 1366px) and (max-width: 1440px) {
+    .carousel-container {
+        max-width: 1100px;
+        padding: 0 15px;
+    }
+    .carousel-track {
+        max-width: 1000px;
+    }
+    .carousel-review {
+        min-width: 320px;
+        max-width: 340px;
+        margin: 0 -15px;
+        padding: 2rem 1.2rem 1.2rem 1.2rem;
+    }
+    .carousel-review.active {
+        transform: scale(1.05) translateY(-8px) rotate(-1deg);
+    }
+    .carousel-nav {
+        margin-top: 1.5rem;
+    }
+    .carousel-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+}
+
+@media (min-width: 1441px) and (max-width: 1600px) {
+    .carousel-container {
+        max-width: 1200px;
+        padding: 0 20px;
+    }
+    .carousel-track {
+        max-width: 1100px;
+    }
+    .carousel-review {
+        min-width: 340px;
+        max-width: 360px;
+        margin: 0 -18px;
+    }
+    .carousel-review.active {
+        transform: scale(1.08) translateY(-8px) rotate(-1deg);
+    }
+}
+
+@media (max-width: 1365px) {
+    .carousel-container {
+        max-width: 1000px;
+        padding: 0 15px;
+    }
+    .carousel-track {
+        max-width: 900px;
+    }
+    .carousel-review {
+        min-width: 300px;
+        max-width: 320px;
+        margin: 0 -12px;
+        padding: 1.8rem 1.2rem 1.2rem 1.2rem;
+    }
+    .carousel-review.active {
+        transform: scale(1.05) translateY(-8px) rotate(-1deg);
+    }
+    .carousel-nav {
+        margin-top: 1.2rem;
+    }
+    .carousel-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.6rem;
+    }
+}
+
+/* Fix carousel card overlap issues */
+.carousel-review:not(.active) {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0.85;
+    filter: blur(0.5px) grayscale(0.1);
 }
 
 .carousel-review.active {
@@ -1426,96 +1756,9 @@ body {
     z-index: 3;
     pointer-events: auto;
     filter: none;
-    animation: carouselActivePop 0.7s cubic-bezier(0.4,0,0.2,1);
 }
 
-@keyframes carouselActivePop {
-    0% { opacity: 0.93; transform: scale(0.99) translateY(10px); }
-    60% { transform: scale(1.12) translateY(-16px) rotate(-2deg); }
-    100% { opacity: 1; transform: scale(1.08) translateY(-8px) rotate(-1deg); }
-}
-
-.carousel-review:not(.active) {
-    filter: blur(0.2px) grayscale(0.05);
-    opacity: 0.93;
-    z-index: 1;
-    animation: carouselFadeOut 0.5s cubic-bezier(0.4,0,0.2,1);
-}
-
-@keyframes carouselFadeOut {
-    from { opacity: 1; }
-    to { opacity: 0.93; }
-}
-
-.carousel-review::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 6px;
-    border-radius: 2rem 2rem 0 0;
-    background: linear-gradient(90deg, #2c5aa0 0%, #f59e0b 100%);
-    opacity: 0.18;
-}
-
-.carousel-review .review-item-header h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #2c5aa0;
-    margin-bottom: 0.2rem;
-}
-
-.carousel-review .transport-service {
-    color: #f59e0b;
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.01em;
-}
-
-.carousel-review .overall-rating {
-    background: #fff;
-    border-radius: 1.5rem;
-    padding: 0.4rem 1.2rem;
-    box-shadow: 0 2px 8px rgba(44,90,160,0.07);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 1.1rem;
-    margin-top: 0.5rem;
-}
-
-.carousel-review .overall-rating .fas.fa-star,
-.carousel-review .overall-rating .far.fa-star {
-    color: #f59e0b;
-    font-size: 1.1rem;
-}
-
-.carousel-review .review-feedback {
-    background: #f1f5f9;
-    border-radius: 1rem;
-    padding: 1.1rem 1.2rem;
-    margin: 1rem 0 0.5rem 0;
-    color: #475569;
-    font-style: italic;
-    font-size: 1.05rem;
-    box-shadow: 0 1px 4px rgba(44,90,160,0.04);
-}
-
-.carousel-review .review-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.97rem;
-    color: #888;
-    margin-top: 1.2rem;
-}
-
-.carousel-review .review-meta i {
-    margin-right: 0.3rem;
-    color: #2c5aa0;
-}
-
+/* Improve carousel navigation */
 .carousel-nav {
     display: flex;
     flex-direction: row;
@@ -1526,6 +1769,7 @@ body {
     width: 100%;
     position: relative;
     z-index: 10;
+    padding: 0 10px;
 }
 
 .carousel-btn {
@@ -1537,7 +1781,7 @@ body {
     color: #fff;
     font-size: 2rem;
     cursor: pointer;
-    transition: all 0.3s, box-shadow 0.3s, border 0.3s;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
     display: flex;
     align-items: center;
     justify-content: center;

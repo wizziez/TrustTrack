@@ -208,7 +208,10 @@ class ReviewsCarousel {
 
     updateCarousel() {
         if (!this.carousel) return;
-        this.carousel.innerHTML = '';
+        // Clear existing cards without removing the track element itself
+        while (this.carousel.firstChild) {
+            this.carousel.removeChild(this.carousel.firstChild);
+        }
         const displayReviews = this.reviews.slice(0, 5);
         displayReviews.forEach((review, idx) => {
             const card = this.createReviewCard(review);
@@ -217,13 +220,18 @@ class ReviewsCarousel {
             }
             this.carousel.appendChild(card);
         });
-        // Animate cards in
+        // Animate cards in - removed animation for now to simplify and focus on core functionality
+        // setTimeout(() => {
+        //     const cards = this.carousel.querySelectorAll('.carousel-review');
+        //     cards.forEach((card, idx) => {
+        //         setTimeout(() => card.classList.add('active'), 100 + idx * 100);
+        //     });
+        // }, 10);
+
+        // Add delay before centering to allow CSS transitions
         setTimeout(() => {
-            const cards = this.carousel.querySelectorAll('.carousel-review');
-            cards.forEach((card, idx) => {
-                setTimeout(() => card.classList.add('active'), 100 + idx * 100);
-            });
-        }, 10);
+            this.centerActiveCard();
+        }, 50);
     }
 
     createReviewCard(review) {
@@ -308,31 +316,43 @@ class ReviewsCarousel {
 
     setupEventListeners() {
         if (this.prevBtn) {
-            this.prevBtn.addEventListener('click', () => this.navigate('prev'));
+            this.prevBtn.addEventListener('click', () => this.navigate(-1));
         }
         if (this.nextBtn) {
-            this.nextBtn.addEventListener('click', () => this.navigate('next'));
+            this.nextBtn.addEventListener('click', () => this.navigate(1));
         }
+
+        // Optional: Add swipe functionality for touch devices
+        // This would require additional event listeners and logic
     }
 
     navigate(direction) {
-        const displayReviews = this.reviews.slice(0, 5);
-        if (direction === 'next') {
-            this.currentIndex = (this.currentIndex + 1) % displayReviews.length;
-        } else {
-            this.currentIndex = (this.currentIndex - 1 + displayReviews.length) % displayReviews.length;
+        this.currentIndex += direction;
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.reviews.slice(0, 5).length - 1;
+        } else if (this.currentIndex >= this.reviews.slice(0, 5).length) {
+            this.currentIndex = 0;
         }
-        // Remove all active classes
-        const cards = this.carousel.querySelectorAll('.carousel-review');
-        cards.forEach(card => card.classList.remove('active'));
-        // Add active to the new card
-        if (cards[this.currentIndex]) {
-            cards[this.currentIndex].classList.add('active');
-        }
-        // Optionally, scroll to the active card
-        if (cards[this.currentIndex]) {
-            cards[this.currentIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        }
+        this.updateCarousel();
+    }
+
+    centerActiveCard() {
+        const activeCard = this.carousel.querySelector('.carousel-review.active');
+        if (!activeCard) return;
+
+        const carouselTrack = this.carousel; // The track is the carousel element itself
+        const trackWidth = carouselTrack.offsetWidth;
+        const cardWidth = activeCard.offsetWidth;
+        const cardLeft = activeCard.offsetLeft;
+
+        // Calculate the scroll position needed to center the active card
+        // ScrollLeft = card's left position - ( (track width - card width) / 2 )
+        const scrollTo = cardLeft - (trackWidth - cardWidth) / 2;
+
+        carouselTrack.scrollTo({
+            left: scrollTo,
+            behavior: 'smooth'
+        });
     }
 
     generateSampleReviews() {
