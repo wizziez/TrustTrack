@@ -142,13 +142,9 @@ TrustTrack/
 
 ## 📱 Responsive Design
 
-- **Mobile First**: Optimized for smartphones
-- **Tablet**: Enhanced layout for medium screens
+
 - **Desktop**: Full-featured experience
-- **Breakpoints**:
-  - Mobile: < 768px
-  - Tablet: 768px - 1024px
-  - Desktop: > 1024px
+
 
 ## 🔧 Features in Detail
 
